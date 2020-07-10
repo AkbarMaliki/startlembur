@@ -40,7 +40,10 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
-
+cordova/
+dist/
+public/
+/src/main.js
 # TypeScript v1 declaration files
 typings/
 

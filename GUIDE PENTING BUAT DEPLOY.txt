@@ -1,0 +1,104 @@
+MULAI PROJECT BARU DENGAN FILE YANG ADA 
+
+1. ganti name di setiap package.json,now.json, manifest.json, config.xml cek bisa di root folder atau cordova
+2. ganti version di setiap package.json bisa di root folder atau cordova
+3. buat project web firebase dan copy firebaseConfig ke src/main.js dan public/firebase-messaging-sw.js
+4. ganti sender id di mounted buat fcm cek file layout default
+var push = PushNotification.init({
+      android: {
+        senderID:"982792415014", // setting project firebase
+        sound:true,
+        vibrate: true,
+        clearNotifications: true,   // clear notifications from shade on app start
+        forceShow: true  
+      },
+      ios: {
+        alert: "true",
+        badge: "true",
+        sound: "true"
+      },
+  });
+
+5. ganti server key di axios saat mengirim ke target notification cek folder testing/pwa/pwa-firebase
+axios.post('https://fcm.googleapis.com/fcm/send', data
+    , {
+        headers: {
+          //   Server Key di project settings firebase
+        Authorization: 'key=AAAAUBoNxhU:APA91bGmp6193yTOWq0XcUu4adMjbF4XVk2uqDy8V-1y7pT26S_Q1kVkYTSyLBsgU-B4lUyYDMykMKtuiQWlVeYIEr713d5Ty0GphyUxcGlMb1D1uKsOPZ4LujfYzke2qdnZOBYEMzdm',
+        "Content-Type":"application/json"
+        }
+    }).then(res => {
+        console.log(res)
+        this.$forceUpdate()
+    })
+
+6. buat project android firebase dan copy tambahsan ssh berikut 
+SSH : 6b:61:97:89:35:86:09:eb:f8:2a:ea:4c:ab:73:7c:97:f6:38:ea:96
+7. Download google-services.json taruh ke folder cordova 
+8. aktifkan authentication firebase via email/password dan gmail
+9. untuk gmail integrasi dengan android, tambahkan ssh seperti point 6 di project setting android
+copy konfigurasi web SDK pada bagian ID klien web dengan REVERSED_CLIENT_ID web Application ID
+setting di config.xml pada bagian cordova-plugin-googleplus 
+<plugin name="cordova-plugin-googleplus" spec="8.1.1">
+      <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.344034493973-h7mrkij6k43btmspsm2kardkqobnfjho" />
+      <variable name="WEB_APPLICATION_CLIENT_ID" value="987932295983-lcj6kc0ibp6aiuj945l0q0haaeq7l2p0.apps.googleusercontent.com" />
+      <variable name="PLAY_SERVICES_VERSION" value="15.0.1" />
+  </plugin>
+untuk configurasi lebih lanjut cek https://lightjourney.now.sh/blog/firebase/firebase-authentication-by-password-atau-facebook-atau-gmail?xx=5ee46a72c6fbd1006f6fc7b6#GOOGLEAUTH
+
+10. buat icon di https://realfavicongenerator.net/ , lalu ubah sesuai file di public folder 
+11. cek folder testing/firebase/auth, testing/firebase/
+
+
+#untuk desktop dan android/ios (cordova) hybrid
+
+1. pada file public/index.html tutup akses <!-- <base href="/" /> -->
+2. pada src/router.js , ubah mode router menjadi "hash"
+
+npm run cordova-build-andorid 
+npm run electron:build 
+
+#untuk website deployment 
+
+1. pada file public/index.html buka akses <base  href ="/" />
+2. pada src/router.js, ubah mode router menjadi "history"
+3. pada now.json, ganti name dan alias menjadi link url yang bisa diakses
+3. pada vue.config.js , pada bagian PrerenderSPAPlugin tambahkan routes 
+  yang ingin di prerender 
+
+npm run deploy  
+
+
+
+
+SENDER ID FCM 
+ // this.$router.push('/sekolah')
+  let that = this
+  document.addEventListener('deviceready', function(){
+      var push = PushNotification.init({
+          android: {
+            senderID:"982792415014", // setting project firebase
+            sound:true,
+            vibrate: true,
+            clearNotifications: true,   // clear notifications from shade on app start
+            forceShow: true  
+          },
+          ios: {
+            alert: "true",
+            badge: "true",
+            sound: "true"
+          },
+      });
+      push.on('registration', function(data) {
+        // ! AMBIL data registrationId untuk ditaruh sebagai payload to : ""
+        // ! simpan data regitrationId kedatabase
+        localStorage.setItem('notifid',data.registrationId)
+        that.regis = data.registrationId
+        // Simpan data.registrationId KE DATABASE DENGAN GANDENGAN ID USER untuk di tembak dengan payload {to : ""} firebase
+      });
+    push.on('notification', function(data) {
+});
+      push.on('error', function(e) {
+          console.log(e.message)
+      });
+  }, false);

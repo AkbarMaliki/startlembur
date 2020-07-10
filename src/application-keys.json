@@ -1,0 +1,13 @@
+{
+  "publicKey": "BJUSmaFFmfjl8uvxY2h2A_-gccjB9AH68pwEm347rwiDhugF4KxznF5mSNS7JRa4Lah-QzPzQLuvjG1AaQJYE-U",
+  "privateKey": "b10KbQfPhouv4yXo9FQataaMq2QxDdKcpREcH2VQ8jo",
+  "mongodb": "mongodb://mrrudyska:tam05101995tam@ds151451.mlab.com:51451/mybook",
+  "mongodb2": "mongodb://maliki:05maliki@ds147974.mlab.com:47974/mongouploads",
+  "mongodb3": "mongodb://maliki:maliki05101995@ds026658.mlab.com:26658/multi",
+  "mongodbUSERNAMEPASSWORD": "mrrudyska tam05101995tam",
+  "baseURL": "http://localhost:8081",
+  "database": "https://infolayanans.space",
+  "baseURL2": "https://kantorbambans.now.sh",
+  "socket": "http://localhost:3000",
+  "ws": "ws://localhost:8000/"
+}

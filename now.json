@@ -1,0 +1,16 @@
+{
+    "name": "vue-app2",
+    "version": 1,
+    "type": "static",
+    "static": {
+      "public": "dist",
+      "rewrites": [{
+        "source": "**",
+        "destination": "/index.html"
+      }]
+    },
+    "alias": " infolay3_testbanjarbaru2",
+    "files": [
+      "dist"
+    ]
+  }

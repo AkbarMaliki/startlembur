@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["page-testing-web-notifikasi"],{bb04:function(t,n,e){"use strict";e.r(n);var i=function(){var t=this,n=t.$createElement;t._self._c;return t._m(0)},a=[function(){var t=this,n=t.$createElement,e=t._self._c||n;return e("div",[t._v(" notifikasi "),e("button",{staticClass:"btn btn-sm btn-primary enable-notification",attrs:{type:"button"}},[t._v("Enable Notification")])])}],s=e("2877"),o={},r=Object(s["a"])(o,i,a,!1,null,null,null);n["default"]=r.exports}}]);
+//# sourceMappingURL=page-testing-web-notifikasi.62851ab9.js.map

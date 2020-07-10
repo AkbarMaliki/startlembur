@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["page-testing-datatable-index"],{"33ac":function(t,e,a){"use strict";a.r(e);var n=function(){var t=this,e=t.$createElement,a=t._self._c||e;return a("div",[a("router-link",{attrs:{to:"/testing/datatable/buefy"}},[t._v("Buefy")]),a("router-link",{attrs:{to:"/testing/datatable/table2"}},[t._v("table2")])],1)},l=[],r=a("2877"),i={},s=Object(r["a"])(i,n,l,!1,null,null,null);e["default"]=s.exports}}]);
+//# sourceMappingURL=page-testing-datatable-index.500c5fae.js.map

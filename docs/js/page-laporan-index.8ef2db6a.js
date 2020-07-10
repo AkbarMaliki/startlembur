@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["page-laporan-index"],{b54d:function(n,a,e){"use strict";e.r(a);var l,p,o=e("2877"),u={},s=Object(o["a"])(u,l,p,!1,null,null,null);a["default"]=s.exports}}]);
+//# sourceMappingURL=page-laporan-index.8ef2db6a.js.map

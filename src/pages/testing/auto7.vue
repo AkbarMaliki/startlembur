@@ -1903,7 +1903,7 @@ export default {
                 :data='td'>
                 <button type='button'  class='btn btn-sm btn-success  '><span class='typcn typcn-chart-bar'></span>Excel</button>
               </download-excel>
-              <a :href="\`https://infolayanansjs.vercel.app/#/excel?data=\${JSON.stringify(td)}\`" class="btn-lg btn-success" ><span class="typcn typcn-chart-bar"></span></a>
+              <a :href="\`https://akbarmaliki.github.io/infolayanansjs/#/excel?data=\${JSON.stringify(td)}\`" class="btn-lg btn-success" ><span class="typcn typcn-chart-bar"></span></a>
             </div>
             <div class="col-sm-3 order-3">
               <div class="tips">

@@ -1,48 +1,57 @@
 <template>
   <div>
-    <button type="button" @click="test" class="btn btn-sm btn-primary">test</button>
+    <form action="" @submit.prevent="test">
+    <div class="sm-form ">
+        <label for="username">id siswa</label>
+        <input type="text" id="idsiswa" name="idsiswa" class="form-control form-control-sm" placeholder="idsiswa" v-model="vdata.idsiswa" >
+    </div>
+    
+    <div class="sm-form ">
+        <label for="name">Your name</label>
+        <input type="text" id="name" name="name" required class="form-control form-control-sm" placeholder="name" v-model="vdata.name" >
+    </div>
+    <button type="submit"  class="btn btn-sm btn-style9">test</button>
+    </form>
   </div>
 </template>
 <script>
-import axios from "axios";
-import firebase from "firebase";
-let db = firebase.firestore();
-export default {
-  data() {
-    return {};
-  },
-  methods: {
-    async readIds(collection, ids) {
-      const reads = ids.map(id => collection.doc(id).get());
-      const result = await Promise.all(reads);
-      return result.map(v => v.data());
-    },
-    test() {
-      db.collection("table1")
-        .get()
-        .then(res => {
-          let data = res.docs.map(e => e.data());
-          db.collection("table2")
-            .get()
-            .then(res2 => {
-              let data2 = res2.docs.map(e => e.data());
-              console.log(data)
-              console.log(data2)
-              let leftjoin = _.map(data2, function(obj) {
-                return _.assign(
-                  obj,
-                  _.find(data1, {
-                    id: obj.id
-                  })
-                );
-              });
-              console.log(leftjoin)
-            });
-        });
-
-      // console.log(leftjoin);
+import axios from 'axios'
+// import firebase from 'firebase'
+// let db = firebase.firestore()
+// let rdb = firebase.database()
+import autophp from '@/plugins/autophp';
+let sdb = new autophp();
+export default{
+  data(){
+    return{
+      vdata:{
+        
+      }
     }
   },
-  mounted() {}
-};
+  methods:{
+    test(){
+      // SELECT
+      sdb.collection("tbuser").doc("*").get("*").then(res => {
+          console.log(res);
+      });
+      // SELECT
+      sdb.collection("test2").doc().select('select * from test2').then(res => {
+          console.log(res);
+      });
+      // UPDATE / INSERT
+      //idnya letak di vdata
+      sdb.collection('tbuser').doc().set(vdata).then(res=>{
+          console.log(res)
+      })
+      // DELETE
+      sdb.collection("test2").doc("3").delete().then(res => {
+          console.log(res);
+      });
+    }
+  },
+  mounted() {
+    
+  },
+}
 </script>

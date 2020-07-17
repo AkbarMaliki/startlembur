@@ -168,7 +168,7 @@
         <div class="w-full sm:w-1/3">
           <div class="row">
             <div class="col-sm-3 order-2">
-              <!-- <a :href="`https://infolayanansjs.vercel.app/#/excel?data=${JSON.stringify(td)}`" class="btn-lg btn-success" ><span class="typcn typcn-chart-bar"></span></a> -->
+              <!-- <a :href="`https://akbarmaliki.github.io/infolayanansjs/#/excel?data=${JSON.stringify(td)}`" class="btn-lg btn-success" ><span class="typcn typcn-chart-bar"></span></a> -->
             </div>
             <div class="col-sm-3 order-3">
               <!-- <div class="tips">

@@ -14,7 +14,7 @@ export default{
     }
   },
   methods:{
-
+    
   },
   mounted() {
     db.collection('users').doc(this.$store.state.users.uid).set({changepassword:"true"},{merge:true}).then(res=>{

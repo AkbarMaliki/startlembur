@@ -53,10 +53,8 @@ export default {
     b64toBlob(b64Data, contentType, sliceSize) {
             contentType = contentType || '';
             sliceSize = sliceSize || 512;
-
             var byteCharacters = atob(b64Data);
             var byteArrays = [];
-
             for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
                 var slice = byteCharacters.slice(offset, offset + sliceSize);
 
@@ -64,9 +62,7 @@ export default {
                 for (var i = 0; i < slice.length; i++) {
                     byteNumbers[i] = slice.charCodeAt(i);
                 }
-
                 var byteArray = new Uint8Array(byteNumbers);
-
                 byteArrays.push(byteArray);
             }
 
@@ -82,6 +78,10 @@ export default {
         var contentType = block[0].split(":")[1];// In this case "image/gif"
         var realData = block[1].split(",")[1];// In this case "R0lGODlhPQBEAPeoAJosM...."
         var blob = this.b64toBlob(realData, contentType);
+        this.$store.state.users.changettd = 'true'
+        db.collection('users').doc(this.$store.state.users.uid).set({changettd:'true'},{merge:true}).then(res=>{
+          
+        })
         db.collection('users').doc(this.$store.state.users.uid).collection('ttd').doc('pertama').set({ttd:data},{merge:true}).then(res=>{
           alert('Berhasil daftarkan tanda tangan digital.')
             this.$router.push('/lembur')
@@ -89,7 +89,6 @@ export default {
     }
   },
   mounted() {
-    alert("Edit Tanda tangan digital!")
     if(this.$store.state.users){
       db.collection('users').doc(this.$store.state.users.uid).collection('ttd').doc('pertama').get().then(res=>{
         let data = res.data()

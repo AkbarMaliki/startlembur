@@ -167,9 +167,46 @@ background:white;
           </div>
         </div>
         <div class="p-2 mt-3">
-    <div id="chart">
+          <hr class="style13">
+          <p class="text-center font-bold font-times">INFO TERKINI</p>
+          <div class="shadow-lg rounded-lg p-2 mt-2"
+          @click="$router.push('/tools/vicon')"
+        style="border:1px solid grey;">
+            <p class="pl-3 font-bold">Jadwal vicon akan datang: </p>
+            <p>
+              <span class="font-bold">
+              Judul / Perihal : 
+              </span>
+              {{vicons.judul}}</p>
+            <p>
+              <span class="font-bold">
+              Tanggal : 
+              </span>
+              {{vicons.tanggal}}</p>
+            <p>
+              <span class="font-bold">
+              Peserta : 
+              </span>
+              {{vicons.peserta}}</p>
+          </div>
+          <div class="shadow-lg rounded-lg p-2 mt-2"
+          @click="$router.push('/tools/sop')"
+        style="border:1px solid grey;">
+            <p class="pl-3 font-bold">Jadwal SOP akan datang: </p>
+            <p>
+              <span class="font-bold">
+              Tanggal : 
+              </span>
+              {{sops.tanggal}}</p>
+            <p>
+              <span class="font-bold">
+              Pemateri : 
+              </span>
+              {{sops.pemateri}}</p>
+          </div>
+    <!-- <div id="chart">
         <apexchart type="line" height="350" :options="chartOptions" :series="series"></apexchart>
-      </div>
+      </div> -->
           <!-- <carousel
             :per-page="1"
             :autoplay="true"
@@ -206,6 +243,8 @@ export default {
       notification: [],
       notification2: [],
       menuKanan:false,
+      vicons:[],
+      sops:[],
      
          series: [{
               name: "Desktops",
@@ -242,6 +281,30 @@ export default {
     };
   },
   methods: {
+    getVicon(){
+      db.collection('vicon').orderBy('createdAt','asc').get().then(res=>{
+        let data = res.docs.map(e=>{
+          return {
+            id:e.id,
+            ...e.data()
+          }
+        })
+        console.log('vicon',data)
+        this.vicons = data[0]
+      })
+    },
+    getSop(){
+      db.collection('sop').orderBy('createdAt','asc').get().then(res=>{
+        let data = res.docs.map(e=>{
+          return {
+            id:e.id,
+            ...e.data()
+          }
+        })
+        console.log('sop',data)
+        this.sops = data[0]
+      })
+    },
     logout(){
       this.$store.dispatch('logout')
     },
@@ -253,6 +316,16 @@ export default {
     let that = this;
   },
   mounted() {
+    this.getVicon()
+    this.getSop()
+    console.log(this.$store.state.users)
+    if(this.$store.state.users.changepassword=='true'){
+      
+    }
+    if (this.$store.state.users.changettd == "true") {
+    }else{
+      this.$router.push('/kedua')
+    }
     db.collection('users').doc(this.$store.state.users.uid).collection('notification').onSnapshot(res=>{
       let data = res.docs.map(e=>{
         return {id:e.id,...e.data()}

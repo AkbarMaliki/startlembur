@@ -26,7 +26,8 @@
         <div
           v-for="(item, index) in datanya"
           :key="index+'datanya'"
-          class="p-2 rounded-lg shadow-1 bg-gray-200"
+          class="p-3 rounded-lg shadow-1 border-green-400  mt-1"
+          style="border:1px solid ;"
           @click="$router.push(`/lembur/head2/approve?id=${item.id}`)"
         >
           <tr>
@@ -34,11 +35,19 @@
             <td class="pl-1 pr-1">&nbsp;:&nbsp;</td>
             <td>{{item.nip}}</td>
           </tr>
-          <img
+           <img
+            v-if="item.from.gambar!='-'"
             :src="item.from.gambar"
             v-viewer
             class="kinoLightBox img-fluid rounded-circle float-right"
-            style="margin-top:-10px;width:40px;height:40px;"
+            style="margin-top:20px;width:40px;height:40px;"
+          />
+          <img
+            v-else
+            src="@/static/nofound.png"
+            v-viewer
+            class="kinoLightBox img-fluid rounded-circle float-right"
+            style="margin-top:20px;width:40px;height:40px;"
           />
           Nama
           &nbsp;:&nbsp;

@@ -139,7 +139,12 @@ export default {
                 uid: data.user.uid,
                 displayName: data.user.displayName,
                 email: data.user.email,
-                emailVerified: data.user.emailVerified
+                emailVerified: data.user.emailVerified,
+             changepassword:"true",
+            unit:{
+              nama_unit:"BELUM ADA"
+            }
+
               };
               db.collection("users")
                 .doc(data.user.uid)

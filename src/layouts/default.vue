@@ -1,5 +1,11 @@
 <template>
   <div>
+     <div v-if="$store.state.busy">
+      <div style="position:fixed;height:100vh;width:100vw;background: rgb(8,34,11);
+background: linear-gradient(90deg, rgba(8,34,11,0.5522584033613445) 3%, rgba(1,11,2,0.5046393557422969) 98%);position: absolute;top: 50%;left: 50%;transform: translateX(-50%) translateY(-50%);z-index:100;">
+        <p class="font-bold text-2xl text-red animated bounce infinite" style="position: absolute;top: 50%;left: 30%;transform: translateX(-50%) translateY(-50%);z-index:100;" >LOADING ...</p>
+      </div>
+    </div>
     <!--
     <router-view style="z-index:10" v-myimage v-reload />-->
     <router-view></router-view>
@@ -167,14 +173,14 @@ export default {
       new WOW().init();
     }, 500);
     // !FCM
-    document.addEventListener(
+     document.addEventListener(
       "deviceready",
       function() {
         var push = PushNotification.init({
           android: {
             senderID: "527099963081", // setting project firebase
-            sound: true,
-            vibrate: true,
+            sound: "true",
+            vibrate: "true",
             clearNotifications: true, // clear notifications from shade on app start
             forceShow: true
           },
@@ -184,11 +190,23 @@ export default {
             sound: "true"
           }
         });
+        PushNotification.createChannel(() => {
+          console.log('success');
+        }, () => {
+          console.log('error');
+        }, {
+          id: "test-channel",
+          description: "My first test channel",
+          importance: 5,
+        vibration: [500, 1000, 500, 500],
+          sound:'test', // test adalah test.wav nama file sound notification
+        });
         push.on("registration", function(data) {
           // ! AMBIL data registrationId untuk ditaruh sebagai payload to : ""
           // ! simpan data regitrationId kedatabase
           localStorage.setItem("notifid", data.registrationId);
           that.regis = data.registrationId;
+          that.$forceUpdate()
           // Simpan data.registrationId KE DATABASE DENGAN GANDENGAN ID USER untuk di tembak dengan payload {to : ""} firebase
         });
         push.on("notification", function(data) {});

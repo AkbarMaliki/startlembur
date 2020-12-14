@@ -37,8 +37,24 @@ background: linear-gradient(349deg, rgba(32,162,150,0.5410539215686274) 0%, rgba
                 class=" font-bold font-times animate__animated animate__fadeInDown delay-1s"
               >Unit kerja</p>
             </div>
+              <!-- <div class="col-4 text-center mt-3">
+              <button
+              @click="$router.push('/admin/mobil')"
+                type="button"
+                class="btn btn-lg btn-style9 animate__animated animate__backInLeft"
+                 style="background: rgb(32,162,150);
+background: linear-gradient(349deg, rgba(32,162,150,0.5410539215686274) 0%, rgba(0,119,126,0.8603816526610644) 93%);"
+              >
+                <span class="typcn typcn-map"></span>
+              </button>
+              <p
+                style="font-size:12px;"
+                class=" font-bold font-times animate__animated animate__fadeInDown delay-1s"
+              >Mobil</p>
+            </div>
               <div class="col-4 text-center mt-3">
               <button
+              @click="$router.push('/admin/report_keluar')"
                 type="button"
                 class="btn btn-lg btn-style9 animate__animated animate__backInLeft"
                  style="background: rgb(32,162,150);
@@ -49,10 +65,11 @@ background: linear-gradient(349deg, rgba(32,162,150,0.5410539215686274) 0%, rgba
               <p
                 style="font-size:12px;"
                 class=" font-bold font-times animate__animated animate__fadeInDown delay-1s"
-              >Ijin Lembur</p>
+              >Report Keluar</p>
             </div>
-              <div class="col-4 text-center mt-3">
+            <div class="col-4 text-center mt-3">
               <button
+              @click="$router.push('/admin/report_driver')"
                 type="button"
                 class="btn btn-lg btn-style9 animate__animated animate__backInLeft"
                  style="background: rgb(32,162,150);
@@ -63,8 +80,23 @@ background: linear-gradient(349deg, rgba(32,162,150,0.5410539215686274) 0%, rgba
               <p
                 style="font-size:12px;"
                 class=" font-bold font-times animate__animated animate__fadeInDown delay-1s"
-              >Ijin Lembur</p>
+              >Report Driver</p>
             </div>
+             <div class="col-4 text-center mt-3">
+              <button
+              @click="$router.push('/admin/report_user')"
+                type="button"
+                class="btn btn-lg btn-style9 animate__animated animate__backInLeft"
+                 style="background: rgb(32,162,150);
+background: linear-gradient(349deg, rgba(32,162,150,0.5410539215686274) 0%, rgba(0,119,126,0.8603816526610644) 93%);"
+              >
+                <span class="typcn typcn-document"></span>
+              </button>
+              <p
+                style="font-size:12px;"
+                class=" font-bold font-times animate__animated animate__fadeInDown delay-1s"
+              >Report Karyawan</p>
+            </div> -->
       </div>
     </div>
   </div>

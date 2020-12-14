@@ -80,26 +80,6 @@
                 <select class='form-control' @change="unitnama($event)" >
                  <option v-for="(item, index) in users"   :key="index+'user'" :value="JSON.stringify(item)">Nama : {{item.nama}} || {{item.nip}}</option>
                 </select>
-                <div class="sm-form">
-                  <input
-                    type="text"
-                    placeholder="head_uid_"
-                    id="head_uid"
-                    name="head_uid"
-                    class="form-control form-control-sm"
-                    v-model="vdata.head_uid"
-                  >
-                </div>
-                    <div class="sm-form">
-                  <input
-                    type="text"
-                    placeholder="nama head"
-                    id="head_nama"
-                    name="head_nama"
-                    class="form-control form-control-sm"
-                    v-model="vdata.head_nama"
-                  >
-                </div>
               </td>
             </tr>
             <!-- FORM -->
@@ -171,12 +151,7 @@
               <!-- <a :href="`https://akbarmaliki.github.io/infolayanansjs/#/excel?data=${JSON.stringify(td)}`" class="btn-lg btn-success" ><span class="typcn typcn-chart-bar"></span></a> -->
             </div>
             <div class="col-sm-3 order-3">
-              <!-- <div class="tips">
-                  <button type="button" @click="print2" class="btn btn-sm btn-outline-danger">
-                    <span class="typcn typcn-document-text"></span>
-                  </button>
-                  <span class="tipstextB">Print Laporan</span>
-              </div> -->
+             
             </div>
             <div class="col-sm-4 order-1">
               <select class="form-control" style="width:80px" v-model="selected">
@@ -326,7 +301,7 @@ export default {
       thnya: {},
       err: false,
       checkedItem:[],
-      less: [,'_id','id'],
+      less: [,'_id','id','head_uid','head_nama'],
       // modal
       modal: false,
       modalAction: "preview",

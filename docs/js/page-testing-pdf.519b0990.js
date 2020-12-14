@@ -1,2 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["page-testing-pdf"],{a9a2:function(e,t,n){"use strict";n.r(t);var a=function(){var e=this,t=e.$createElement;e._self._c;return e._m(0)},i=[function(){var e=this,t=e.$createElement,n=e._self._c||t;return n("div",[n("iframe",{staticStyle:{"min-width":"100%",border:"none","min-height":"1000px"},attrs:{src:"http://infolayanans.space/api/files/img20191023_10425153.pdf"}})])}],r=n("2877"),s={},c=Object(r["a"])(s,a,i,!1,null,null,null);t["default"]=c.exports}}]);
-//# sourceMappingURL=page-testing-pdf.519b0990.js.map

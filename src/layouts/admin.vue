@@ -55,14 +55,12 @@ background: radial-gradient(circle, rgba(33,35,57,0.36738445378151263) 0%, rgba(
               <span class="typcn typcn-arrow-down float-right"></span>
             </div>
             <ul class="isaktif sm:pl-4 anim mb-3 text-white animated slideInRight " style="background:#232E30;">
-              <li class="bord hover:bg-red-500 text-left sm:pl-3" style="font-size:13px;" @click="$router.push('/lembur/user')">&nbsp;&nbsp;User&nbsp;&nbsp;<span class="typcn typcn-user"></span></li>
-              <li class="bord hover:bg-red-500 text-left sm:pl-3" style="font-size:13px;" @click="$router.push('/lembur/unit')">&nbsp;&nbsp;unit&nbsp;&nbsp;<span class="typcn typcn-group-outline"></span></li>
-              <li class="bord hover:bg-red-500 text-left sm:pl-3" style="font-size:13px;" @click="$router.push('/lembur')">&nbsp;&nbsp;Menu utama&nbsp;&nbsp;<span class="typcn typcn-adjust-contrast"></span></li>
+              <li class="bord hover:bg-red-500 text-left sm:pl-3" style="font-size:13px;" @click="$router.push('/admin')">&nbsp;&nbsp;Admin&nbsp;&nbsp;<span class="typcn typcn-user"></span></li>
             </ul>
             <div
               class="bord hover:bg-red-500 rounded-b-lg text-left pl-3 mt-2"
               style="border-top:2px solid black;color:white;font-size:13px;"
-              @click="$router.push('/lembur/admin')"
+              @click="$router.push('/admin')"
             >
               DASHBOARD
             </div>

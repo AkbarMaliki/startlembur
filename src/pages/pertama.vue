@@ -53,12 +53,12 @@
             <button @click="onUpload" class="btn btn-sm btn-dark"><span class="typcn typcn-upload"></span> Upload</button>
           </div>
         </div>
-          <p>Notifikasi dengan Email ? <span class="font-bold font-times"> 
+          <!-- <p>Notifikasi dengan Email ? <span class="font-bold font-times"> 
           {{email ?'aktif':"tidak aktif"}}
           </span> 
           </p>
         <button type="button" class="btn btn-sm" @click="email=false;vdata.emails=false" :class="{'btn-secondary':!email}">OFF</button>
-        <button type="button" class="btn btn-sm" @click="email=true;vdata.emails=true" :class="{'btn-primary':email}">ON</button>
+        <button type="button" class="btn btn-sm" @click="email=true;vdata.emails=true" :class="{'btn-primary':email}">ON</button> -->
         <div class="md-form form-sm" v-if="email">
           <span class="typcn typcn-mail text-lg"></span>&nbsp;&nbsp;&nbsp;
           <label for="email">Email</label>

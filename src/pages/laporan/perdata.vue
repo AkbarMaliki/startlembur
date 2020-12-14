@@ -65,7 +65,7 @@
       >Jl. A. Yani No.11, Guntung Payung, Landasan Ulin, Kota Banjar Baru, Kalimantan Selatan 70714, Indonesia</p>
         </div>
       </div>
-      <img src="@/static//icon.png" class="img-fluid" style="width:100%;height:20px;" />
+      <img src="@/static/photo/line.jpg" class="img-fluid" style="width:100%;height:20px;" />
           <br>
       <p
         class="text-center underline text-uppercase"
@@ -261,6 +261,14 @@ export default {
       this.$forceUpdate();
     },
     print() {
+      document.addEventListener(
+        "deviceready",
+        function () {
+          // cordova.plugins.printer is now available
+          cordova.plugins.printer.print();
+        },
+        false
+      );
       window.print();
     },
     back() {

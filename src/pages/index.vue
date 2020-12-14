@@ -12,7 +12,7 @@
             <div v-if="error" class="alert alert-danger">{{error}}</div>
             <form action="#" @submit.prevent="loginAuth" class="font-times">
               <div class="form-group row">
-                <label for="email" class="col-md-4 col-form-label text-md-right">Username</label>
+                <label for="email" class="col-md-4 col-form-label text-md-right">NIP</label>
 
                 <div class="col-md-6">
                   <input
@@ -51,7 +51,7 @@
                 </div>
               </div>
               <br />
-              <p class="text-center font-times">Atau login menggunakan</p>
+              <!-- <p class="text-center font-times">Atau login menggunakan</p>
               <br />
               <div v-if="cordova">
                 <div class="col-md-12" @click="cordovaGoogleAuth">
@@ -72,14 +72,20 @@
                     />Login Dengan Google
                   </a>
                 </div>
-              </div>
+              </div> -->
             </form>
             <!-- <button type="button" @click="facebookAuth" class="btn btn-sm btn-outline-dark text-green btn-block  "><span class="typcn typcn-social-facebook-circular"></span> Facebook</button> -->
             <br />
-            <p
+            <p class="text-center text-xl">
+              <span class="typcn typcn-group"></span>
+            </p>
+            <p class="p-2 font-times text-xl text-center font-italic">
+              Silahkan login dengan akun yang sudah didaftarkan oleh <span class="font-bold">Admin</span> 
+            </p>
+            <!-- <p
               class="text-center font-times font-bold"
               @click="$router.push('/auth/register')"
-            >Daftar</p>
+            >Daftar</p> -->
           </div>
         </div>
 
@@ -132,7 +138,6 @@ export default {
         });
     },
     googleAuth() {
-      this.Oauth=true
       const provider = new firebase.auth.GoogleAuthProvider();
       firebase
         .auth()
@@ -143,14 +148,21 @@ export default {
             displayName: data.user.displayName,
             email: data.user.email,
             emailVerified: data.user.emailVerified,
-            emailnotif:data.user.email
+            emailnotif:data.user.email,
+            changepassword:"true",
+            unit:{
+              nama_unit:"BELUM ADA"
+            }
+
           };
           this.$store.commit("changeUsers", user);
-          localStorage.setItem("users", JSON.stringify(user));
           console.log('user',user)
+          localStorage.setItem("users", JSON.stringify(user));
+          // console.log('user',user)
           db.collection("users")
             .doc(data.user.uid)
             .set(user, { merge: true }).then(res=>{
+              this.Oauth=true
               this.$router.push("/lembur");
             })
         })
@@ -159,7 +171,6 @@ export default {
         });
     },
     facebookAuth() {
-      this.Oauth=true
       const provider = new firebase.auth.FacebookAuthProvider();
       firebase
         .auth()
@@ -173,6 +184,7 @@ export default {
           };
           this.$store.commit("changeUsers", user);
           localStorage.setItem("users", JSON.stringify(user));
+           this.Oauth=true
           this.$router.push("/lembur");
         })
         .catch(err => {
@@ -180,7 +192,6 @@ export default {
         });
     },
     cordovaGoogleAuth() {
-      this.Oauth=true
       let that = this;
       window.plugins.googleplus.login(
         {
@@ -199,14 +210,23 @@ export default {
                 uid: data.user.uid,
                 displayName: data.user.displayName,
                 email: data.user.email,
-                emailVerified: data.user.emailVerified
+                emailVerified: data.user.emailVerified,
+             changepassword:"true",
+            unit:{
+              nama_unit:"BELUM ADA"
+            }
+
               };
               that.$store.commit("changeUsers", user);
               localStorage.setItem("users", JSON.stringify(user));
+               alert(JSON.stringify(user))
+              console.log(JSON.stringify(user))
               db.collection("users")
                 .doc(data.user.uid)
-                .set(user, { merge: true });
-              that.$router.push("/lembur");
+                .set(user, { merge: true }).then(res=>{
+                  this.Oauth=true
+                          that.$router.push("/lembur");
+                })
             })
             .catch(err => {
               alert("Oops. " + err.message);

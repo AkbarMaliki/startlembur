@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-show="ready">
+    <div >
       <button
         type="button"
         @click="$router.push('/lembur')"
@@ -158,51 +158,52 @@ export default {
     }
   },
   mounted() {
-    db.collection('users').where('bagian','==','unit_head').get().then(res=>{
-      let data = res.docs.map(e=>{
-        return {
-          uid:e.id,
-          ...e.data()
-        }
-      })
-      this.units=data
-    })
-     db.collection('users').where('bagian','==','deputy').get().then(res=>{
-      let data = res.docs.map(e=>{
-        return {
-          uid:e.id,
-          ...e.data()
-        }
-      })
-      this.units2=data
-    })
     var today = new Date();
-    var dd = today.getDate() + 1;
-    var mm = today.getMonth() + 1; //January is 0!
-    var yyyy = today.getFullYear();
-    if (dd < 10) {
-      dd = "0" + dd;
-    }
-    if (mm < 10) {
-      mm = "0" + mm;
-    }
-    today = yyyy + "-" + mm + "-" + dd;
-    this.$el.querySelector("#tanggal_lembur").setAttribute("max", today);
-    let that = this;
-    setTimeout(() => {
-      that.vdata.nip = this.$store.state.users.nip;
-      that.vdata.nama = this.$store.state.users.nama;
-      that.vdata.unit = this.$store.state.users.unit;
-      if(this.$store.state.users.bagian=='unit_head'){
-        that.vdata.status = 2;
-      }else{
-        that.vdata.status = 1;
-      }
-      that.$forceUpdate();
-    }, 1000);
-  },
+        var dd = today.getDate() + 1;
+        var mm = today.getMonth() + 1; //January is 0!
+        var yyyy = today.getFullYear();
+        if (dd < 10) {
+          dd = "0" + dd;
+        }
+        if (mm < 10) {
+          mm = "0" + mm;
+        }
+        today = yyyy + "-" + mm + "-" + dd;
+        this.$el.querySelector("#tanggal_lembur").setAttribute("max", today);
+        let that = this;
+        setTimeout(() => {
+          that.vdata.nip = this.$store.state.users.nip;
+          that.vdata.nama = this.$store.state.users.nama;
+          that.vdata.unit = this.$store.state.users.unit;
+          if(this.$store.state.users.bagian=='unit_head'){
+            that.vdata.status = 2;
+          }else{
+            that.vdata.status = 1;
+          }
+          that.$forceUpdate();
+        }, 1000);
+    },
   beforeMount() {
-    let that = this;
+    let that =this
+        db.collection('users').where('bagian','==','unit_head').get().then(res=>{
+          let data = res.docs.map(e=>{
+            return {
+              uid:e.id,
+              ...e.data()
+            }
+          })
+          this.units=data
+        })
+         db.collection('users').where('bagian','==','deputy').get().then(res=>{
+          let data = res.docs.map(e=>{
+            return {
+              uid:e.id,
+              ...e.data()
+            }
+          })
+          this.units2=data
+        })
+        
     db.collection("users")
       .doc(this.$store.state.users.uid)
       .collection("lembur")
@@ -212,7 +213,7 @@ export default {
         if (data.length > 0) {
           that.$router.push("/lembur/status");
         } else {
-          that.ready = true;
+          // that.ready = true;
         }
       });
   },

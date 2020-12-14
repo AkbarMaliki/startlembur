@@ -1,8 +1,7 @@
-
-      <template>
+<template>
   <div style="font-family:times new roman;">
     <div class="no-print bg-black" style="color:White;">
-      <hr />
+      <hr/>
       <div class="container-fluid">
         <div class="row">
           <div class="col-sm-6">
@@ -45,7 +44,6 @@
     <!--  -->
     <!-- DIMULAI DARI SINI PRINT PAGE -->
     <!--  -->
-
     <div style="font-family:times new roman;" v-if="ready">
       <p
         class="pl-3 text-center font-times font-bold"
@@ -98,9 +96,9 @@
                 >{{datanya.disposisi_head.unit.singkatan_unit}}</p>
                 <p class="p-1">{{datanya.disposisi2}}</p>
                 <br />
-                <hr class="style1" />
               </div>
               <div v-if="datanya.disposisi1">
+                <hr class="style1" />
                 <p
                   class="font-bold font-times text-uppercase"
                 >{{datanya.disposisi_unit_head.unit.singkatan_unit}} HEAD</p>
@@ -153,14 +151,25 @@
           <p class="font-bold">Hormat Kami</p>
           <br />
           <br />
-          <img
-            :src="ttd_unit_head"
-            class="kinoLightBox img-fluid"
-            style="height:120px;width:100px;"
-          />
-          <!-- {{datanya}} -->
-          <p v-if="datanya.disposisi_unit_head" class="underline font-bold" style="font-size:19px;">{{datanya.disposisi_unit_head.unit.singkatan_unit}} HEAD</p>
-          <p v-else class="underline font-bold" style="font-size:19px;">{{datanya.unit.singkatan_unit}} HEAD</p>
+          <div v-if="datanya.disposisi2">
+            <img
+              :src="ttd_unit_head"
+              class="kinoLightBox img-fluid"
+              style="height:120px;width:100px;"
+            />
+            <!-- {{datanya}} -->
+            <p v-if="datanya.disposisi_head" class="underline font-bold" style="font-size:19px;">{{datanya.disposisi_head.unit.singkatan_unit}}</p>
+          </div>
+          <div v-else>
+            <img
+              :src="ttd_unit_head"
+              class="kinoLightBox img-fluid"
+              style="height:120px;width:100px;"
+            />
+            <!-- {{datanya}} -->
+            <p v-if="datanya.disposisi_unit_head" class="underline font-bold" style="font-size:19px;">{{datanya.disposisi_unit_head.unit.singkatan_unit}} HEAD</p>
+            <p v-else class="underline font-bold" style="font-size:19px;">{{datanya.unit.singkatan_unit}} HEAD</p>
+          </div>
         </div>
       </div>
     </div>
@@ -187,6 +196,7 @@ export default {
         { Nama: "Kino", Jabatan: "Traveller" }
       ],
       ttd_unit_head: "",
+      ttd_deputy: "",
       ttds1: "",
       ttds2: "",
       ttds3: "",
@@ -228,8 +238,11 @@ export default {
       this.$forceUpdate();
     },
     print() {
-      document.addEventListener(
-        "deviceready",
+      this.ready = true;
+      setTimeout(() => {
+        
+        document.addEventListener(
+          "deviceready",
         function() {
           // cordova.plugins.printer is now available
           cordova.plugins.printer.print();
@@ -237,6 +250,7 @@ export default {
         false
       );
       window.print();
+      }, 2000);
     },
     back() {
       this.$router.go(-1);
@@ -263,11 +277,10 @@ export default {
             return e;
           }
         });
-        this.ready = true;
         this.datanya = data[0];
         if (this.$store.state.users.bagian == "unit_head") {
           db.collection("users")
-            .doc(this.$store.state.users.uid)
+            .doc(data[0].disposisi_head.uid)
             .collection("ttd")
             .doc("pertama")
             .get()
@@ -276,8 +289,8 @@ export default {
               this.ttd_unit_head = data.ttd;
               this.$forceUpdate();
               setTimeout(() => {
-                window.print();
-                this.$router.go(-1);
+                // window.print();
+                // this.$router.go(-1);
               }, 1000);
             });
         } else {
@@ -291,8 +304,8 @@ export default {
               this.ttd_unit_head = data.ttd;
               this.$forceUpdate();
               setTimeout(() => {
-                window.print();
-                this.$router.go(-1);
+                // window.print();
+                // this.$router.go(-1);
               }, 1000);
             });
         }

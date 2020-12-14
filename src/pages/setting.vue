@@ -1,12 +1,6 @@
 <template>
   <div>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="animated fadeIn">
-      <path
-        fill="#0099ff"
-        fill-opacity="1"
-        d="M0,224L30,213.3C60,203,120,181,180,170.7C240,160,300,160,360,170.7C420,181,480,203,540,181.3C600,160,660,96,720,90.7C780,85,840,139,900,138.7C960,139,1020,85,1080,96C1140,107,1200,181,1260,213.3C1320,245,1380,235,1410,229.3L1440,224L1440,0L1410,0C1380,0,1320,0,1260,0C1200,0,1140,0,1080,0C1020,0,960,0,900,0C840,0,780,0,720,0C660,0,600,0,540,0C480,0,420,0,360,0C300,0,240,0,180,0C120,0,60,0,30,0L0,0Z"
-      />
-    </svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#000b76" fill-opacity="1" d="M0,224L0,224L180,224L180,288L360,288L360,32L540,32L540,160L720,160L720,64L900,64L900,32L1080,32L1080,288L1260,288L1260,64L1440,64L1440,0L1260,0L1260,0L1080,0L1080,0L900,0L900,0L720,0L720,0L540,0L540,0L360,0L360,0L180,0L180,0L0,0L0,0Z"></path></svg>
     <div class="card animate__animated animate__backInRight">
       <div class="card-header text-center mx-auto">
         <div v-if="this.$store.state.users.gambar!='-'">
@@ -29,6 +23,7 @@
         </div>
       </div>
       <div class="card-body">
+        <button type="button" @click="$router.push('/changepassword')" class="btn btn-sm btn-style9 ">Change Password</button>
       <button type="button" @click="$router.push('/kedua')" class="btn btn-sm btn-style9  float-right" style="background: rgb(34,227,23);
 background: linear-gradient(349deg, rgba(34,227,23,0.5410539215686274) 0%, rgba(17,232,27,0.8603816526610644) 97%);"><span class="typcn typcn-pen"></span> TTD</button>
       <br>
@@ -85,12 +80,12 @@ background: linear-gradient(349deg, rgba(34,227,23,0.5410539215686274) 0%, rgba(
           </div>
         </div>
         <hr class="style2">
-         <p>Notifikasi dengan Email ? <span class="font-bold font-times"> 
+         <!-- <p>Notifikasi dengan Email ? <span class="font-bold font-times"> 
           {{email ?'aktif':"tidak aktif"}}
           </span> 
           </p>
         <button type="button" class="btn btn-sm" @click="email=false;vdata.emails=false" :class="{'btn-secondary':!email}">OFF</button>
-        <button type="button" class="btn btn-sm" @click="email=true;vdata.emails=true" :class="{'btn-primary':email}">ON</button>
+        <button type="button" class="btn btn-sm" @click="email=true;vdata.emails=true" :class="{'btn-primary':email}">ON</button> -->
         <div class="md-form form-sm" v-if="email">
           <span class="typcn typcn-mail text-lg"></span>&nbsp;&nbsp;&nbsp;
           <label for="email">Email</label>
@@ -113,13 +108,7 @@ background: linear-gradient(349deg, rgba(34,227,23,0.5410539215686274) 0%, rgba(
         </button>
       </div>
     </div>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-      <path
-        fill="#0099ff"
-        fill-opacity="1"
-        d="M0,224L30,213.3C60,203,120,181,180,170.7C240,160,300,160,360,170.7C420,181,480,203,540,181.3C600,160,660,96,720,90.7C780,85,840,139,900,138.7C960,139,1020,85,1080,96C1140,107,1200,181,1260,213.3C1320,245,1380,235,1410,229.3L1440,224L1440,320L1410,320C1380,320,1320,320,1260,320C1200,320,1140,320,1080,320C1020,320,960,320,900,320C840,320,780,320,720,320C660,320,600,320,540,320C480,320,420,320,360,320C300,320,240,320,180,320C120,320,60,320,30,320L0,320Z"
-      />
-    </svg>
+   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#000b76" fill-opacity="1" d="M0,224L0,224L180,224L180,288L360,288L360,32L540,32L540,160L720,160L720,64L900,64L900,32L1080,32L1080,288L1260,288L1260,64L1440,64L1440,320L1260,320L1260,320L1080,320L1080,320L900,320L900,320L720,320L720,320L540,320L540,320L360,320L360,320L180,320L180,320L0,320L0,320Z"></path></svg>
   </div>
 </template>
 <script>
@@ -164,6 +153,7 @@ export default {
         .doc(this.$store.state.users.uid)
         .set({ ...this.vdata }, { merge: true })
         .then(res => {
+          alert("Simpan Berhasil")
           this.$store.dispatch('ceklogin',{true:true,false:true}).then(res=>{
             this.$router.push("/lembur");
           })

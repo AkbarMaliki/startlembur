@@ -76,6 +76,12 @@ const createStore = () => {
         console.log(data)
         state.drivers.driver = data
       },
+      changebusy(state,data){
+        state.busy=data
+      },
+      changegps(state,data){
+        state.watchgps=data
+      },
       inputRequest(state, data) {
         // let clone = this.$_.clone(data); //item vue object
         console.log(state)
@@ -239,12 +245,13 @@ const createStore = () => {
             title: datas.title,
             body: datas.body,
             surveyID: "ewtawgreg-gragrag-rgarhthgbad",
-            soundname: "default",
+            sound: true,
             ledColor: [255, 255, 128, 16],
             vibrationPattern: [250, 1000, 250, 500],
             link:datas.link,
+            android_channel_id: "test-channel",
           },
-          to: datas.to.fcm,
+          to: datas.to.fcm2,
           priority: "high",
           content_available: true
         }
@@ -389,6 +396,8 @@ const createStore = () => {
       ceklogin({
         commit
       }, datas) {
+        commit('changebusy',true)
+
         return new Promise((resolve, reject) => {
           firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
@@ -400,8 +409,9 @@ const createStore = () => {
                 localStorage.setItem('users', JSON.stringify(res.data()))
                 if (datas) {
                   if (datas.true == true) {
-
+                    commit('changebusy',false)
                   } else {
+                    commit('changebusy',false)
                     router.push(datas.true)
                   }
                 }
@@ -410,8 +420,10 @@ const createStore = () => {
             } else {
               console.log('user tidak ada');
               if (datas.false) {
-                router.push(datas.false)
+                    commit('changebusy',false)
+                    router.push(datas.false)
               } else {
+                commit('changebusy',false)
 
               }
               // No user is signed in.
@@ -420,6 +432,7 @@ const createStore = () => {
         })
       },
       logout(vcon) {
+        vcon.commit('changegps',false)
         firebase
           .auth()
           .signOut()

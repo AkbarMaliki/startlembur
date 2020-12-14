@@ -13,7 +13,7 @@ const RouterLayout = createRouterLayout(layout => {
 })
 
 export default new Router({
-  mode: 'history', // history/hash , hash apabila cordova, history apabila web + public html <base href="/" /> ON
+  mode: 'hash', // history/hash , hash apabila cordova, history apabila web + public html <base href="/" /> ON
   routes: [{
     path: '/',
     component: RouterLayout,

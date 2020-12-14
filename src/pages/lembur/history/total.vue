@@ -18,13 +18,28 @@
     <div class="row">
         <div class="offset-1 col-10">
             <div class="p-3 rounded-lg shadow-lg" style="border:1px solid grey;">
+              <button type="button" @click="$router.push(`/laporan/lemburtotal?uid=${$store.state.users.uid}&tahun=${vdata.tahun}&bulan=${vdata.bulan}&total=${total}`)" class="btn btn-sm btn-success float-right  "><span class="typcn typcn-chart-bar text-green-400"></span> Laporan</button>
+              <br>
                 <div class="sm-form ">
                     <label for="tahun">Tahun</label>
                     <input type="text" id="tahun" name="tahun" class="form-control form-control-sm" placeholder="tahun" v-model="vdata.tahun" >
                 </div>
                   <div class="sm-form ">
                     <label for="bulan">Bulan</label>
-                    <input type="text" id="bulan" name="bulan" class="form-control form-control-sm" placeholder="bulan" v-model="vdata.bulan" >
+                    <select class='form-control' v-model="vdata.bulan">
+                      <option>Januari</option>
+                      <option>Februari</option>
+                      <option>Maret</option>
+                      <option>April</option>
+                      <option>Mei</option>
+                      <option>Juni</option>
+                      <option>Juli</option>
+                      <option>Agustus</option>
+                      <option>September</option>
+                      <option>Oktober</option>
+                      <option>November</option>
+                      <option>Desember</option>
+                    </select>
                 </div>
 
                 Jumlah jam bulan ini : <span class="text-red font-bold">{{total}}</span>
@@ -54,7 +69,7 @@ export default{
           let data = this.td
           let jumlah= 0
           data.forEach(e=>{
-              jumlah=jumlah+e.lama_lembur
+              jumlah=parseInt(jumlah) + parseInt(e.lama_lembur)
           })
           return jumlah
       },

@@ -34,11 +34,19 @@
             <td class="pl-1 pr-1">&nbsp;:&nbsp;</td>
             <td>{{item.nip}}</td>
           </tr>
-          <img
+           <img
+            v-if="item.from.gambar!='-'"
             :src="item.from.gambar"
             v-viewer
             class="kinoLightBox img-fluid rounded-circle float-right"
-            style="margin-top:-10px;width:40px;height:40px;"
+            style="margin-top:20px;width:40px;height:40px;"
+          />
+          <img
+            v-else
+            src="@/static/nofound.png"
+            v-viewer
+            class="kinoLightBox img-fluid rounded-circle float-right"
+            style="margin-top:20px;width:40px;height:40px;"
           />
           Nama
           &nbsp;:&nbsp;

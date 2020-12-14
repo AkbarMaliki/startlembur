@@ -18,6 +18,8 @@
     <div class="card animate__animated animate__zoomIn">
       <div class="card-header">History Lembur</div>
       <div class="card-body">
+        <button type="button" @click="print" class="btn btn-sm btn-primary  float-right"><span class="typcn typcn-printer"></span> Print</button>
+         <a :href="`https://akbarmaliki.github.io/infolayanansjs/#/excel?data=${JSON.stringify(susun(td)).split('&').join('%26')}`" > <button type="button" class="btn btn-sm btn-success  float-right"><span class="typcn typcn-printer"></span>  <span class="typcn typcn-chart-bar"></span></button></a>
           <div class="sm-form ">
               <label for="search">Your search</label>
               <input type="text" id="search" name="search" class="form-control form-control-sm" placeholder="search" v-model="search" >
@@ -26,18 +28,27 @@
         @click="$router.push(`/lembur/history/detail?id=${item.id}&uid=${item.from.uid}`)"
           v-for="(item, index) in td"
           :key="index+'datanya'"
-          class="p-2 rounded-lg shadow-1 bg-gray-200 mt-1"
+         class="p-3 rounded-lg shadow-1 border-green-400  mt-1"
+          style="border:1px solid ;"
         >
           <tr>
             <td>NIP</td>
             <td class="pl-1 pr-1">&nbsp;:&nbsp;</td>
             <td>{{item.nip}}</td>
           </tr>
-          <img
+           <img
+            v-if="item.from.gambar!='-'"
             :src="item.from.gambar"
             v-viewer
             class="kinoLightBox img-fluid rounded-circle float-right"
-            style="margin-top:-10px;width:40px;height:40px;"
+            style="margin-top:20px;width:40px;height:40px;"
+          />
+          <img
+            v-else
+            src="@/static/nofound.png"
+            v-viewer
+            class="kinoLightBox img-fluid rounded-circle float-right"
+            style="margin-top:20px;width:40px;height:40px;"
           />
           Nama
           &nbsp;:&nbsp;
@@ -83,10 +94,38 @@ export default {
   data() {
     return {
       datanya: [],
-      search:""
+      search:"",
+      less:['id']
     };
   },
   methods: {
+     print(){
+      this.$router.push(`/laporan/print?less=${this.less.toString()}`);
+      this.$store.state.print2 = this.susun(this.td)
+      // console.log(this.susun(this.td))
+      // console.log(this.td)
+    },
+     susun(datas){
+      let that=this
+      let data = datas;
+      // let order = ['id','nip','nama','unit','tujuan','rincian_kerja','lokasi','jam_berangkat','driver','mobil','createAt','kendaraan']
+      let hasil=[]
+      let obj={}
+      // console.log('susun',data)
+      let datanya = data.map((e)=>{
+        let obj={}
+        console.log(e)
+        obj.nip=e.nip
+        obj.nama=e.nama
+        obj.unit=e.unit.nama_unit
+        obj.lama_lembur=e.lama_lembur
+        obj.tanggal_lembur=e.tanggal_lembur
+        obj.jenis_pekerjaan=e.jenis_pekerjaan
+        obj.rincian_kerja=e.rincian_kerja
+        return obj
+      })
+      return datanya
+    },
     distanceToNow(date) {
       return this.$datefns.distanceInWordsToNow(new Date(date), {
         locale: id,
